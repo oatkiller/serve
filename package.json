@@ -1,0 +1,23 @@
+{
+  "name": "serve",
+  "version": "0.0.1",
+  "description": "Serves the files in the current directory or passed directory on 8080 or passed port using connect.",
+  "main": "serve",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "connect": ">= 2.7.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:oatkiller/serve.git"
+  },
+  "keywords": [
+    "node",
+    "connect",
+    "server"
+  ],
+  "author": "roba",
+  "license": "BSD"
+}

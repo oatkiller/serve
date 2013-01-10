@@ -1,0 +1,43 @@
+#!/usr/local/bin/node
+
+var argLength = process.argv.length,
+  defaultPort = 8080,
+  defaultDirectoryName = process.cwd();
+
+var showHelpAndExit = function () {
+  console.log("usage: serve [dirname] [portnumber]\nServes files at dirname on portnumber.");
+  process.exit();
+};
+
+if (argLength === 3) {
+  if (/^\d+$/.test(process.argv[2])) {
+    portNumber = parseFloat(process.argv[2]);
+    directoryName = defaultDirectoryName;
+  } else {
+    portNumber = defaultPort;
+    directoryName = process.argv[2];
+  }
+} else if (argLength === 4) {
+  directoryName = process.argv[2];
+  portNumber = parseFloat(process.argv[3]);
+} else if (argLength === 2) {
+    portNumber = defaultPort;
+    directoryName = defaultDirectoryName;
+} else {
+  showHelpAndExit();
+}
+
+if (isNaN(portNumber) === true) {
+  showHelpAndExit();
+}
+
+var connect = require("connect");
+
+var staticMiddleware = connect.
+  static(directoryName);
+
+connect.
+  createServer(staticMiddleware).
+  listen(portNumber);
+
+console.log("Serving dir: " + directoryName + " on port " + portNumber + ". Press <C-C> to stop");
